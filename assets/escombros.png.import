@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ckvowmyulkgl1"
-path="res://.godot/imported/fall.png-d7aa096dbfba630fb3afbbc005a06be3.ctex"
+uid="uid://dv0barmsi2mg"
+path="res://.godot/imported/escombros.png-cd46d2cf89223d5dab08d17ad7c3e9d9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://fall.png"
-dest_files=["res://.godot/imported/fall.png-d7aa096dbfba630fb3afbbc005a06be3.ctex"]
+source_file="res://assets/escombros.png"
+dest_files=["res://.godot/imported/escombros.png-cd46d2cf89223d5dab08d17ad7c3e9d9.ctex"]
 
 [params]
 

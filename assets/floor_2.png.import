@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://62xb23catqix"
-path="res://.godot/imported/mago.png-96475446a49d23679b4ed6ba65ca97fa.ctex"
+uid="uid://dfw1s1jckeacd"
+path="res://.godot/imported/floor_2.png-09b17734e031a2e6ae35d39e4fa84b49.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://mago.png"
-dest_files=["res://.godot/imported/mago.png-96475446a49d23679b4ed6ba65ca97fa.ctex"]
+source_file="res://assets/floor_2.png"
+dest_files=["res://.godot/imported/floor_2.png-09b17734e031a2e6ae35d39e4fa84b49.ctex"]
 
 [params]
 

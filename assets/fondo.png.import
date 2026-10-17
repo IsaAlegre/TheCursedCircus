@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://diulut6yt8tdb"
-path="res://.godot/imported/viga_soporte.png-b812e0777bf03602daeea7f56836466c.ctex"
+uid="uid://dnrosat66w506"
+path="res://.godot/imported/fondo.png-8a4c8009d63abf39c4fc9abdbea6c634.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://viga_soporte.png"
-dest_files=["res://.godot/imported/viga_soporte.png-b812e0777bf03602daeea7f56836466c.ctex"]
+source_file="res://assets/fondo.png"
+dest_files=["res://.godot/imported/fondo.png-8a4c8009d63abf39c4fc9abdbea6c634.ctex"]
 
 [params]
 

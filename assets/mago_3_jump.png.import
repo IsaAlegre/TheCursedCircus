@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvhrts7pxmbpk"
-path="res://.godot/imported/floor_3.png-27fc121009abb8e8b43afa90a2230f30.ctex"
+uid="uid://d36od8esv8w08"
+path="res://.godot/imported/mago_3_jump.png-afbeaf019ab02b65070d84a4355bc31e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://floor_3.png"
-dest_files=["res://.godot/imported/floor_3.png-27fc121009abb8e8b43afa90a2230f30.ctex"]
+source_file="res://assets/mago_3_jump.png"
+dest_files=["res://.godot/imported/mago_3_jump.png-afbeaf019ab02b65070d84a4355bc31e.ctex"]
 
 [params]
 

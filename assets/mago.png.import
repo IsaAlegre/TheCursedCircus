@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2o83gsn3aav"
-path="res://.godot/imported/muro_lona_3.png-e460f8b175687e3389a3869ea11c2909.ctex"
+uid="uid://62xb23catqix"
+path="res://.godot/imported/mago.png-9c559867d901100faa8e255b9b48a710.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://muro_lona_3.png"
-dest_files=["res://.godot/imported/muro_lona_3.png-e460f8b175687e3389a3869ea11c2909.ctex"]
+source_file="res://assets/mago.png"
+dest_files=["res://.godot/imported/mago.png-9c559867d901100faa8e255b9b48a710.ctex"]
 
 [params]
 

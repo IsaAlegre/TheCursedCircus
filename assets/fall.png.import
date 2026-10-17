@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccpejdmhabsu2"
-path="res://.godot/imported/Gemini_Generated_Image_bejzjfbejzjfbejz.jpg-dae2e954df79f68169717450a4388771.ctex"
+uid="uid://ckvowmyulkgl1"
+path="res://.godot/imported/fall.png-34063ea7687c4ab2669780e50e98b45c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Gemini_Generated_Image_bejzjfbejzjfbejz.jpg"
-dest_files=["res://.godot/imported/Gemini_Generated_Image_bejzjfbejzjfbejz.jpg-dae2e954df79f68169717450a4388771.ctex"]
+source_file="res://assets/fall.png"
+dest_files=["res://.godot/imported/fall.png-34063ea7687c4ab2669780e50e98b45c.ctex"]
 
 [params]
 

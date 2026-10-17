@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dv0barmsi2mg"
-path="res://.godot/imported/escombros.png-b1200d2b4173a15c77955c98311ef173.ctex"
+uid="uid://dl67qdn42mlac"
+path="res://.godot/imported/pit_edge_left.png-1671978643d25726aa3e5f4ba3af58c9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://escombros.png"
-dest_files=["res://.godot/imported/escombros.png-b1200d2b4173a15c77955c98311ef173.ctex"]
+source_file="res://assets/pit_edge_left.png"
+dest_files=["res://.godot/imported/pit_edge_left.png-1671978643d25726aa3e5f4ba3af58c9.ctex"]
 
 [params]
 

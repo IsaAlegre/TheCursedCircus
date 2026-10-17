@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2ntmgvgjpu85"
-path="res://.godot/imported/taquilla.png-b713a86edd8ba32788976515418b0907.ctex"
+uid="uid://coishvqfghop6"
+path="res://.godot/imported/pilar.png-f227436c7702f0e9d41e156a4e45e4b0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://taquilla.png"
-dest_files=["res://.godot/imported/taquilla.png-b713a86edd8ba32788976515418b0907.ctex"]
+source_file="res://assets/pilar.png"
+dest_files=["res://.godot/imported/pilar.png-f227436c7702f0e9d41e156a4e45e4b0.ctex"]
 
 [params]
 

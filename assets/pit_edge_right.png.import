@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://coishvqfghop6"
-path="res://.godot/imported/pilar.png-5be175b234099e421e598a606517b34a.ctex"
+uid="uid://bbch6y4p3oih5"
+path="res://.godot/imported/pit_edge_right.png-239af7cb6b51dd07cbad9dc276a0e8ae.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://pilar.png"
-dest_files=["res://.godot/imported/pilar.png-5be175b234099e421e598a606517b34a.ctex"]
+source_file="res://assets/pit_edge_right.png"
+dest_files=["res://.godot/imported/pit_edge_right.png-239af7cb6b51dd07cbad9dc276a0e8ae.ctex"]
 
 [params]
 

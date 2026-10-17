@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dl67qdn42mlac"
-path="res://.godot/imported/pit_edge_left.png-d91f966c5a4312e2aafa21d84da83e8e.ctex"
+uid="uid://diulut6yt8tdb"
+path="res://.godot/imported/viga_soporte.png-087c0b43ab3bab9ae7a7adc246377431.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://pit_edge_left.png"
-dest_files=["res://.godot/imported/pit_edge_left.png-d91f966c5a4312e2aafa21d84da83e8e.ctex"]
+source_file="res://assets/viga_soporte.png"
+dest_files=["res://.godot/imported/viga_soporte.png-087c0b43ab3bab9ae7a7adc246377431.ctex"]
 
 [params]
 

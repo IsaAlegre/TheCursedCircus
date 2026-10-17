@@ -1,24 +1,24 @@
 [gd_scene format=4 uid="uid://e37edj4n23gf"]
 
-[ext_resource type="Texture2D" uid="uid://ccpejdmhabsu2" path="res://Gemini_Generated_Image_bejzjfbejzjfbejz.jpg" id="1_h0wtr"]
-[ext_resource type="Texture2D" uid="uid://dnrosat66w506" path="res://fondo.png" id="2_34yp4"]
-[ext_resource type="Texture2D" uid="uid://c0nesmvd5hhep" path="res://muro_lona_1.png" id="3_7ce3s"]
-[ext_resource type="Texture2D" uid="uid://2o83gsn3aav" path="res://muro_lona_3.png" id="4_yyrpj"]
-[ext_resource type="Texture2D" uid="uid://bokjr7mwkr3o" path="res://muro_lona_5.png" id="5_o46bk"]
-[ext_resource type="Texture2D" uid="uid://c6v86km0djkre" path="res://piso_tileset_6x1.png" id="6_1t0n7"]
-[ext_resource type="Texture2D" uid="uid://dgouonsshyoqy" path="res://Conjunto de marcos de madera envejecida.png" id="7_fnctx"]
-[ext_resource type="Texture2D" uid="uid://b6tthspr2x8yh" path="res://farol.png" id="8_1t0n7"]
-[ext_resource type="Texture2D" uid="uid://dtmt1nwve88jd" path="res://barril.png" id="9_3im4l"]
-[ext_resource type="Script" uid="uid://di7d15mx1q7mg" path="res://player_1_mago.gd" id="10_7ce3s"]
-[ext_resource type="Texture2D" uid="uid://62xb23catqix" path="res://mago.png" id="10_34yp4"]
-[ext_resource type="Texture2D" uid="uid://d36od8esv8w08" path="res://mago_3_jump.png" id="12_3im4l"]
-[ext_resource type="Texture2D" uid="uid://bnfca1c7x37yl" path="res://walk_1.png" id="14_7h30g"]
-[ext_resource type="Texture2D" uid="uid://bab880uorcxib" path="res://walk_2.png" id="15_3rqyh"]
-[ext_resource type="Texture2D" uid="uid://caofqbgn8xvgk" path="res://walk_3.png" id="16_p7e7r"]
-[ext_resource type="Texture2D" uid="uid://xqo5clqu3yen" path="res://walk_4.png" id="17_ls2kf"]
+[ext_resource type="Texture2D" uid="uid://ccpejdmhabsu2" path="res://assets/Gemini_Generated_Image_bejzjfbejzjfbejz.jpg" id="1_r6w1h"]
+[ext_resource type="Texture2D" uid="uid://dnrosat66w506" path="res://assets/fondo.png" id="2_co0c6"]
+[ext_resource type="Texture2D" uid="uid://c0nesmvd5hhep" path="res://assets/muro_lona_1.png" id="3_0qj6g"]
+[ext_resource type="Texture2D" uid="uid://2o83gsn3aav" path="res://assets/muro_lona_3.png" id="4_qx8k3"]
+[ext_resource type="Texture2D" uid="uid://bokjr7mwkr3o" path="res://assets/muro_lona_5.png" id="5_cokvo"]
+[ext_resource type="Texture2D" uid="uid://c6v86km0djkre" path="res://assets/piso_tileset_6x1.png" id="6_5ruck"]
+[ext_resource type="Texture2D" uid="uid://dgouonsshyoqy" path="res://assets/Conjunto de marcos de madera envejecida.png" id="7_ojgse"]
+[ext_resource type="Texture2D" uid="uid://b6tthspr2x8yh" path="res://assets/farol.png" id="8_uli2u"]
+[ext_resource type="Texture2D" uid="uid://dtmt1nwve88jd" path="res://assets/barril.png" id="9_i01ws"]
+[ext_resource type="Script" uid="uid://di7d15mx1q7mg" path="res://scripts/player_1_mago.gd" id="10_r6w1h"]
+[ext_resource type="Texture2D" uid="uid://62xb23catqix" path="res://assets/mago.png" id="11_yr8f8"]
+[ext_resource type="Texture2D" uid="uid://d36od8esv8w08" path="res://assets/mago_3_jump.png" id="12_iadvs"]
+[ext_resource type="Texture2D" uid="uid://bnfca1c7x37yl" path="res://assets/walk_1.png" id="13_aga2y"]
+[ext_resource type="Texture2D" uid="uid://bab880uorcxib" path="res://assets/walk_2.png" id="14_sbbnf"]
+[ext_resource type="Texture2D" uid="uid://caofqbgn8xvgk" path="res://assets/walk_3.png" id="15_v2lus"]
+[ext_resource type="Texture2D" uid="uid://xqo5clqu3yen" path="res://assets/walk_4.png" id="16_d6a37"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2n6wq"]
-texture = ExtResource("2_34yp4")
+texture = ExtResource("2_co0c6")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 1:0/0 = 0
@@ -206,7 +206,7 @@ tile_size = Vector2i(64, 64)
 sources/1 = SubResource("TileSetAtlasSource_2n6wq")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7h30g"]
-texture = ExtResource("6_1t0n7")
+texture = ExtResource("6_5ruck")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
@@ -227,7 +227,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_7h30g")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3rqyh"]
-texture = ExtResource("7_fnctx")
+texture = ExtResource("7_ojgse")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 1:0/0 = 0
@@ -448,7 +448,7 @@ sources/0 = SubResource("TileSetAtlasSource_3rqyh")
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("10_34yp4")
+"texture": ExtResource("11_yr8f8")
 }],
 "loop": 1,
 "name": &"idle",
@@ -456,7 +456,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("12_3im4l")
+"texture": ExtResource("12_iadvs")
 }],
 "loop": 1,
 "name": &"jump",
@@ -464,16 +464,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("14_7h30g")
+"texture": ExtResource("13_aga2y")
 }, {
 "duration": 1.0,
-"texture": ExtResource("15_3rqyh")
+"texture": ExtResource("14_sbbnf")
 }, {
 "duration": 1.0,
-"texture": ExtResource("16_p7e7r")
+"texture": ExtResource("15_v2lus")
 }, {
 "duration": 1.0,
-"texture": ExtResource("17_ls2kf")
+"texture": ExtResource("16_d6a37")
 }],
 "loop": 1,
 "name": &"walk",
@@ -487,7 +487,7 @@ size = Vector2(38.5, 136)
 
 [node name="GeminiGeneratedImageBejzjfbejzjfbejz" type="Sprite2D" parent="." unique_id=1313725263]
 position = Vector2(574, 360)
-texture = ExtResource("1_h0wtr")
+texture = ExtResource("1_r6w1h")
 
 [node name="fondo" type="TileMapLayer" parent="." unique_id=1965968086]
 tile_set = SubResource("TileSet_xmpw4")
@@ -495,15 +495,15 @@ metadata/_edit_lock_ = true
 
 [node name="MuroLona1" type="Sprite2D" parent="." unique_id=1631238584]
 position = Vector2(116, 484)
-texture = ExtResource("3_7ce3s")
+texture = ExtResource("3_0qj6g")
 
 [node name="MuroLona3" type="Sprite2D" parent="." unique_id=1874113655]
 position = Vector2(665, 507)
-texture = ExtResource("4_yyrpj")
+texture = ExtResource("4_qx8k3")
 
 [node name="MuroLona5" type="Sprite2D" parent="." unique_id=1290664172]
 position = Vector2(1170, 495)
-texture = ExtResource("5_o46bk")
+texture = ExtResource("5_cokvo")
 
 [node name="suelo" type="TileMapLayer" parent="." unique_id=979812887]
 tile_map_data = PackedByteArray("AAABAAkAAAAAAAAAAAACAAkAAAAAAAAAAAADAAkAAAAAAAAAAAAEAAkAAAADAAAAAAAFAAkAAAAEAAAAAAAHAAkAAAAFAAAAAAAIAAkAAAADAAAAAAAJAAkAAAADAAAAAAAKAAkAAAADAAAAAAALAAkAAAADAAAAAAAMAAkAAAADAAAAAAANAAkAAAAEAAAAAAAPAAkAAAAFAAAAAAAQAAkAAAAAAAAAAAASAAkAAAAAAAAAAAARAAkAAAAAAAAAAAATAAkAAAAAAAAAAAA=")
@@ -516,15 +516,15 @@ tile_set = SubResource("TileSet_ovkby")
 
 [node name="Farol" type="Sprite2D" parent="." unique_id=1578159215]
 position = Vector2(773, 484)
-texture = ExtResource("8_1t0n7")
+texture = ExtResource("8_uli2u")
 
 [node name="Barril" type="Sprite2D" parent="." unique_id=449282443]
 position = Vector2(1034, 556)
-texture = ExtResource("9_3im4l")
+texture = ExtResource("9_i01ws")
 
 [node name="Player1-mago" type="CharacterBody2D" parent="." unique_id=2114045632]
 position = Vector2(-16, 116)
-script = ExtResource("10_7ce3s")
+script = ExtResource("10_r6w1h")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="Player1-mago" unique_id=109622484]

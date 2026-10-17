@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dgouonsshyoqy"
-path="res://.godot/imported/Conjunto de marcos de madera envejecida.png-538d19f914549bb3c71712104305fd50.ctex"
+uid="uid://2o83gsn3aav"
+path="res://.godot/imported/muro_lona_3.png-da0d903b3665f42b50c0e033e71cce51.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Conjunto de marcos de madera envejecida.png"
-dest_files=["res://.godot/imported/Conjunto de marcos de madera envejecida.png-538d19f914549bb3c71712104305fd50.ctex"]
+source_file="res://assets/muro_lona_3.png"
+dest_files=["res://.godot/imported/muro_lona_3.png-da0d903b3665f42b50c0e033e71cce51.ctex"]
 
 [params]
 

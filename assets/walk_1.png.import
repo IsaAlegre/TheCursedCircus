@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6v86km0djkre"
-path="res://.godot/imported/piso_tileset_6x1.png-fc53f5b397840c592203e625c55e2d97.ctex"
+uid="uid://bnfca1c7x37yl"
+path="res://.godot/imported/walk_1.png-697340bcf281e0bc3a4164e4c6e8813d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://piso_tileset_6x1.png"
-dest_files=["res://.godot/imported/piso_tileset_6x1.png-fc53f5b397840c592203e625c55e2d97.ctex"]
+source_file="res://assets/walk_1.png"
+dest_files=["res://.godot/imported/walk_1.png-697340bcf281e0bc3a4164e4c6e8813d.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cibqm8aqnnq0u"
-path="res://.godot/imported/mago_2_run.png-40d47b5816fed73127371ac9ae052a4f.ctex"
+uid="uid://c6v86km0djkre"
+path="res://.godot/imported/piso_tileset_6x1.png-5e7685e675de9a804a0f111b50f0ba85.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://mago_2_run.png"
-dest_files=["res://.godot/imported/mago_2_run.png-40d47b5816fed73127371ac9ae052a4f.ctex"]
+source_file="res://assets/piso_tileset_6x1.png"
+dest_files=["res://.godot/imported/piso_tileset_6x1.png-5e7685e675de9a804a0f111b50f0ba85.ctex"]
 
 [params]
 

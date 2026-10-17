@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dnrosat66w506"
-path="res://.godot/imported/fondo.png-ba70bfea8a1397320d702391fbab30ab.ctex"
+uid="uid://dtmt1nwve88jd"
+path="res://.godot/imported/barril.png-c921524741820bfdcecb68e913df555e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://fondo.png"
-dest_files=["res://.godot/imported/fondo.png-ba70bfea8a1397320d702391fbab30ab.ctex"]
+source_file="res://assets/barril.png"
+dest_files=["res://.godot/imported/barril.png-c921524741820bfdcecb68e913df555e.ctex"]
 
 [params]
 

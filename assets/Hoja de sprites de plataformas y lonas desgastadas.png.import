@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0nesmvd5hhep"
-path="res://.godot/imported/muro_lona_1.png-13abedfe7611cabbc66ffd10ba75c7bf.ctex"
+uid="uid://cvfxy0mtsxmh0"
+path="res://.godot/imported/Hoja de sprites de plataformas y lonas desgastadas.png-57d56822b576b94479d5c052cd754a11.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://muro_lona_1.png"
-dest_files=["res://.godot/imported/muro_lona_1.png-13abedfe7611cabbc66ffd10ba75c7bf.ctex"]
+source_file="res://assets/Hoja de sprites de plataformas y lonas desgastadas.png"
+dest_files=["res://.godot/imported/Hoja de sprites de plataformas y lonas desgastadas.png-57d56822b576b94479d5c052cd754a11.ctex"]
 
 [params]
 
