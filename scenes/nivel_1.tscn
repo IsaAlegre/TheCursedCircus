@@ -3,6 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://ccpejdmhabsu2" path="res://assets/Gemini_Generated_Image_bejzjfbejzjfbejz.jpg" id="1_r6w1h"]
 [ext_resource type="Texture2D" uid="uid://dnrosat66w506" path="res://assets/fondo.png" id="2_co0c6"]
 [ext_resource type="Texture2D" uid="uid://c0nesmvd5hhep" path="res://assets/muro_lona_1.png" id="3_0qj6g"]
+[ext_resource type="Texture2D" uid="uid://dux7yogg77wa7" path="res://assets/capa2_media.png" id="3_qx8k3"]
+[ext_resource type="Texture2D" uid="uid://bwp821k47xglm" path="res://assets/capa3.png" id="4_cokvo"]
 [ext_resource type="Texture2D" uid="uid://2o83gsn3aav" path="res://assets/muro_lona_3.png" id="4_qx8k3"]
 [ext_resource type="Texture2D" uid="uid://bokjr7mwkr3o" path="res://assets/muro_lona_5.png" id="5_cokvo"]
 [ext_resource type="Texture2D" uid="uid://c6v86km0djkre" path="res://assets/piso_tileset_6x1.png" id="6_5ruck"]
@@ -486,12 +488,28 @@ size = Vector2(38.5, 136)
 [node name="Nivel1" type="Node2D" unique_id=1900401369]
 
 [node name="GeminiGeneratedImageBejzjfbejzjfbejz" type="Sprite2D" parent="." unique_id=1313725263]
-position = Vector2(574, 360)
+position = Vector2(549, 357)
 texture = ExtResource("1_r6w1h")
 
 [node name="fondo" type="TileMapLayer" parent="." unique_id=1965968086]
 tile_set = SubResource("TileSet_xmpw4")
 metadata/_edit_lock_ = true
+
+[node name="CapaMedia" type="Parallax2D" parent="." unique_id=1133181229]
+scroll_scale = Vector2(0.6, 0.6)
+scroll_offset = Vector2(0.5, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="CapaMedia" unique_id=1023567328]
+position = Vector2(104.5, -3)
+texture = ExtResource("3_qx8k3")
+centered = false
+
+[node name="CapaCercana" type="Parallax2D" parent="." unique_id=1124036085]
+scroll_scale = Vector2(0.8, 0.8)
+
+[node name="Sprite2D" type="Sprite2D" parent="CapaCercana" unique_id=318619009]
+texture = ExtResource("4_cokvo")
+centered = false
 
 [node name="MuroLona1" type="Sprite2D" parent="." unique_id=1631238584]
 position = Vector2(116, 484)
@@ -523,7 +541,7 @@ position = Vector2(1034, 556)
 texture = ExtResource("9_i01ws")
 
 [node name="Player1-mago" type="CharacterBody2D" parent="." unique_id=2114045632]
-position = Vector2(-16, 116)
+position = Vector2(0, 95)
 script = ExtResource("10_r6w1h")
 metadata/_edit_group_ = true
 
