@@ -12,7 +12,7 @@ config_version=5
 
 config/name="TheCursedCircus"
 run/main_scene="uid://e37edj4n23gf"
-config/features=PackedStringArray("4.7", "GL Compatibility")
+config/features=PackedStringArray("4.7", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [display]

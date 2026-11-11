@@ -1,0 +1,96 @@
+[gd_scene load_steps=12 format=3]
+
+[ext_resource type="Script" path="res://scripts/artista_corrupto.gd" id="1_art"]
+[ext_resource type="Texture2D" path="res://assets/personajes/artista_quieto.png" id="2_quieto"]
+[ext_resource type="Texture2D" path="res://assets/personajes/artista_caminar.png" id="3_caminar"]
+[ext_resource type="Texture2D" path="res://assets/personajes/artista_aviso.png" id="4_aviso"]
+[ext_resource type="Texture2D" path="res://assets/personajes/artista_embestida.png" id="5_embestida"]
+[ext_resource type="Texture2D" path="res://assets/personajes/artista_danio.png" id="6_danio"]
+[ext_resource type="Texture2D" path="res://assets/personajes/artista_muerte_1.png" id="7_muerte1"]
+[ext_resource type="Texture2D" path="res://assets/personajes/artista_muerte_2.png" id="8_muerte2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_art"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_quieto")
+}],
+"loop": true,
+"name": &"quieto",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_caminar")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_quieto")
+}],
+"loop": true,
+"name": &"caminar",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_aviso")
+}],
+"loop": true,
+"name": &"aviso",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_embestida")
+}],
+"loop": true,
+"name": &"embestida",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_danio")
+}],
+"loop": true,
+"name": &"aturdido",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_muerte1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_muerte2")
+}],
+"loop": false,
+"name": &"muerte",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cuerpo"]
+size = Vector2(48, 108)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_golpe"]
+size = Vector2(60, 100)
+
+[node name="ArtistaCorrupto" type="CharacterBody2D"]
+script = ExtResource("1_art")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -68)
+sprite_frames = SubResource("SpriteFrames_art")
+animation = &"quieto"
+autoplay = "quieto"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -54)
+shape = SubResource("RectangleShape2D_cuerpo")
+
+[node name="AreaGolpe" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaGolpe"]
+position = Vector2(0, -54)
+shape = SubResource("RectangleShape2D_golpe")
+
+[node name="RayoSuelo" type="RayCast2D" parent="."]
+position = Vector2(-30, -4)
+target_position = Vector2(0, 30)

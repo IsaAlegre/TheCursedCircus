@@ -11,12 +11,15 @@
 [ext_resource type="Texture2D" uid="uid://b6tthspr2x8yh" path="res://assets/farol.png" id="8_uli2u"]
 [ext_resource type="Texture2D" uid="uid://dtmt1nwve88jd" path="res://assets/barril.png" id="9_i01ws"]
 [ext_resource type="Script" uid="uid://di7d15mx1q7mg" path="res://scripts/player_1_mago.gd" id="10_r6w1h"]
+[ext_resource type="Texture2D" uid="uid://2ntmgvgjpu85" path="res://assets/taquilla.png" id="11_cokvo"]
 [ext_resource type="Texture2D" uid="uid://62xb23catqix" path="res://assets/mago.png" id="11_yr8f8"]
 [ext_resource type="Texture2D" uid="uid://d36od8esv8w08" path="res://assets/mago_3_jump.png" id="12_iadvs"]
 [ext_resource type="Texture2D" uid="uid://bnfca1c7x37yl" path="res://assets/walk_1.png" id="13_aga2y"]
 [ext_resource type="Texture2D" uid="uid://bab880uorcxib" path="res://assets/walk_2.png" id="14_sbbnf"]
 [ext_resource type="Texture2D" uid="uid://caofqbgn8xvgk" path="res://assets/walk_3.png" id="15_v2lus"]
 [ext_resource type="Texture2D" uid="uid://xqo5clqu3yen" path="res://assets/walk_4.png" id="16_d6a37"]
+[ext_resource type="PackedScene" path="res://scenes/plataforma_semisolida.tscn" id="19_5ruck"]
+[ext_resource type="PackedScene" path="res://scenes/artista_corrupto.tscn" id="20_ojgse"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7h30g"]
 texture = ExtResource("6_5ruck")
@@ -296,9 +299,17 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2gbay"]
 size = Vector2(38.5, 136)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uli2u"]
+size = Vector2(32, 3000)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i01ws"]
+size = Vector2(32, 3000)
+
 [node name="Nivel1" type="Node2D" unique_id=1900401369]
 
 [node name="CapaLejana" type="Parallax2D" parent="." unique_id=1239279378]
+repeat_size = Vector2(1807.9999, 0)
+repeat_times = 3
 
 [node name="GeminiGeneratedImageBejzjfbejzjfbejz" type="Sprite2D" parent="CapaLejana" unique_id=1313725263]
 position = Vector2(2, -166)
@@ -309,6 +320,8 @@ centered = false
 [node name="CapaMedia" type="Parallax2D" parent="." unique_id=1133181229]
 scroll_scale = Vector2(0.65, 0)
 scroll_offset = Vector2(0.5, 0)
+repeat_size = Vector2(2304, 0)
+repeat_times = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="CapaMedia" unique_id=1023567328]
 position = Vector2(96.5, -9)
@@ -317,6 +330,8 @@ centered = false
 
 [node name="CapaCercana" type="Parallax2D" parent="." unique_id=1124036085]
 scroll_scale = Vector2(0.8, 0.8)
+repeat_size = Vector2(2304, 0)
+repeat_times = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="CapaCercana" unique_id=318619009]
 position = Vector2(2, -6)
@@ -336,7 +351,7 @@ position = Vector2(1170, 495)
 texture = ExtResource("5_cokvo")
 
 [node name="suelo" type="TileMapLayer" parent="." unique_id=979812887]
-tile_map_data = PackedByteArray("AAABAAkAAAAAAAAAAAACAAkAAAAAAAAAAAADAAkAAAAAAAAAAAAEAAkAAAADAAAAAAAFAAkAAAAEAAAAAAAHAAkAAAAFAAAAAAAIAAkAAAADAAAAAAAJAAkAAAADAAAAAAAKAAkAAAADAAAAAAALAAkAAAADAAAAAAAMAAkAAAADAAAAAAANAAkAAAAEAAAAAAAPAAkAAAAFAAAAAAAQAAkAAAAAAAAAAAASAAkAAAAAAAAAAAARAAkAAAAAAAAAAAATAAkAAAAAAAAAAAAUAAkAAAAAAAAAAAAVAAkAAAAEAAAAAAAXAAkAAAAFAAAAAAAYAAkAAAAAAAAAAAAZAAkAAAAAAAAAAAAaAAkAAAABAAAAAAAbAAkAAAACAAAAAAA=")
+tile_map_data = PackedByteArray("AAABAAkAAAAAAAAAAAACAAkAAAAAAAAAAAADAAkAAAAAAAAAAAAEAAkAAAADAAAAAAAFAAkAAAAEAAAAAAAHAAkAAAAFAAAAAAAIAAkAAAADAAAAAAAJAAkAAAADAAAAAAAKAAkAAAADAAAAAAALAAkAAAADAAAAAAAMAAkAAAADAAAAAAANAAkAAAAEAAAAAAAPAAkAAAAFAAAAAAAQAAkAAAAAAAAAAAASAAkAAAAAAAAAAAARAAkAAAAAAAAAAAATAAkAAAAAAAAAAAAUAAkAAAAAAAAAAAAVAAkAAAAEAAAAAAAXAAkAAAAFAAAAAAAYAAkAAAAAAAAAAAAZAAkAAAAAAAAAAAAaAAkAAAABAAAAAAAbAAkAAAACAAAAAAAcAAkAAAADAAAAAAAdAAkAAAABAAAAAAAeAAkAAAAAAAAAAAAfAAkAAAABAAAAAAAgAAkAAAADAAAAAAAhAAkAAAABAAAAAAAiAAkAAAACAAAAAAAjAAkAAAADAAAAAAAkAAkAAAABAAAAAAAlAAkAAAABAAAAAAAmAAkAAAACAAAAAAAnAAkAAAABAAAAAAAoAAkAAAABAAAAAAApAAkAAAACAAAAAAAqAAkAAAABAAAAAAArAAkAAAAEAAAAAAAuAAkAAAAFAAAAAAAvAAkAAAAAAAAAAAAwAAkAAAADAAAAAAAxAAkAAAAAAAAAAAAyAAkAAAADAAAAAAAzAAkAAAAAAAAAAAA0AAkAAAACAAAAAAA1AAkAAAACAAAAAAA2AAkAAAADAAAAAAA3AAkAAAAAAAAAAAA4AAkAAAAAAAAAAAA5AAkAAAABAAAAAAA6AAkAAAABAAAAAAA7AAkAAAAAAAAAAABCAAkAAAAFAAAAAABDAAkAAAAAAAAAAABEAAkAAAADAAAAAABFAAkAAAABAAAAAABGAAkAAAACAAAAAABHAAkAAAADAAAAAABIAAkAAAAAAAAAAABJAAkAAAABAAAAAABKAAkAAAADAAAAAABLAAkAAAABAAAAAABMAAkAAAAAAAAAAAA8AAkAAAABAAAAAAA9AAkAAAACAAAAAAA+AAkAAAADAAAAAAA/AAkAAAAEAAAAAABYAAsAAAAEAAAAAABNAAkAAAADAAAAAABOAAkAAAADAAAAAABPAAkAAAAEAAAAAAA=")
 tile_set = SubResource("TileSet_ihr6k")
 metadata/_edit_lock_ = true
 
@@ -351,6 +366,40 @@ texture = ExtResource("8_uli2u")
 [node name="Barril" type="Sprite2D" parent="." unique_id=449282443]
 position = Vector2(1034, 556)
 texture = ExtResource("9_i01ws")
+
+[node name="Decoracion" type="Node2D" parent="." unique_id=469272074]
+
+[node name="Farol" type="Sprite2D" parent="Decoracion" unique_id=1062521906]
+position = Vector2(1900, 484)
+texture = ExtResource("8_uli2u")
+
+[node name="Farol2" type="Sprite2D" parent="Decoracion" unique_id=630087604]
+position = Vector2(3041, 467)
+texture = ExtResource("8_uli2u")
+
+[node name="Farol3" type="Sprite2D" parent="Decoracion" unique_id=354615304]
+position = Vector2(3720, 484)
+texture = ExtResource("8_uli2u")
+
+[node name="Farol4" type="Sprite2D" parent="Decoracion" unique_id=227841130]
+position = Vector2(4330, 484)
+texture = ExtResource("8_uli2u")
+
+[node name="Taquilla" type="Sprite2D" parent="Decoracion" unique_id=1224081371]
+position = Vector2(2060, 500)
+texture = ExtResource("11_cokvo")
+
+[node name="Taquilla2" type="Sprite2D" parent="Decoracion" unique_id=553272540]
+position = Vector2(3330, 500)
+texture = ExtResource("11_cokvo")
+
+[node name="Barril" type="Sprite2D" parent="Decoracion" unique_id=1695359260]
+position = Vector2(2580, 556)
+texture = ExtResource("9_i01ws")
+
+[node name="MuroFinal" type="Sprite2D" parent="Decoracion" unique_id=1055577347]
+position = Vector2(4858, 490)
+texture = ExtResource("4_qx8k3")
 
 [node name="Player1-mago" type="CharacterBody2D" parent="." unique_id=2114045632]
 position = Vector2(0, 95)
@@ -370,5 +419,53 @@ shape = SubResource("RectangleShape2D_2gbay")
 [node name="Camera2D" type="Camera2D" parent="Player1-mago" unique_id=1535302272]
 limit_left = 0
 limit_top = 0
-limit_right = 1728
+limit_right = 4928
 limit_bottom = 648
+
+[node name="Limites" type="Node2D" parent="." unique_id=1883011552]
+
+[node name="ParedInicio" type="StaticBody2D" parent="Limites" unique_id=803661131]
+position = Vector2(32, 300)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Limites/ParedInicio" unique_id=1983788944]
+shape = SubResource("RectangleShape2D_uli2u")
+
+[node name="ParedFinal" type="StaticBody2D" parent="Limites" unique_id=1285248670]
+position = Vector2(4912, 300)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Limites/ParedFinal" unique_id=1373192692]
+shape = SubResource("RectangleShape2D_i01ws")
+
+[node name="Plataformas" type="Node2D" parent="." unique_id=722656360]
+
+[node name="Palco1" parent="Plataformas" unique_id=179080564 instance=ExtResource("19_5ruck")]
+position = Vector2(2240, 480)
+
+[node name="Palco2" parent="Plataformas" unique_id=1793144759 instance=ExtResource("19_5ruck")]
+position = Vector2(2470, 372)
+
+[node name="Palco3" parent="Plataformas" unique_id=1082097200 instance=ExtResource("19_5ruck")]
+position = Vector2(3230, 470)
+
+[node name="PalcoMalabarista" parent="Plataformas" unique_id=1136109045 instance=ExtResource("19_5ruck")]
+position = Vector2(3460, 372)
+
+[node name="Enemigos" type="Node2D" parent="." unique_id=1245816571]
+
+[node name="ArtistaEmboscada1" parent="Enemigos" unique_id=1974597493 instance=ExtResource("20_ojgse")]
+position = Vector2(620, 570)
+patrulla = false
+
+[node name="ArtistaEmboscada2" parent="Enemigos" unique_id=926534379 instance=ExtResource("20_ojgse")]
+position = Vector2(820, 570)
+patrulla = false
+
+[node name="ArtistaEmboscada3" parent="Enemigos" unique_id=311433019 instance=ExtResource("20_ojgse")]
+position = Vector2(1180, 570)
+patrulla = false
+
+[node name="ArtistaPasillo1" parent="Enemigos" unique_id=555578419 instance=ExtResource("20_ojgse")]
+position = Vector2(2650, 570)
+
+[node name="ArtistaPasillo2" parent="Enemigos" unique_id=52741640 instance=ExtResource("20_ojgse")]
+position = Vector2(3600, 570)
