@@ -15,6 +15,10 @@ run/main_scene="uid://e37edj4n23gf"
 config/features=PackedStringArray("4.7", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Partida="*uid://dwbce0xwx83tq"
+
 [display]
 
 window/stretch/mode="canvas_items"

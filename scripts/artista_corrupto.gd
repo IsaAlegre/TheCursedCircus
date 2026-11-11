@@ -25,6 +25,13 @@ enum Estado { PATRULLA, AVISO, EMBESTIDA, ATURDIDO, MUERTO }
 ## Marcar según hacia dónde mira el dibujo original del sprite.
 @export var sprite_mira_a_la_derecha: bool = true
 
+@export_group("Botín")
+## Probabilidad de soltar un cristal de maná al morir.
+@export_range(0.0, 1.0) var prob_cristal: float = 0.85
+## Si suelta cristal: chance de que sea mediano (+15) o especial (+30). El resto, pequeño (+5).
+@export_range(0.0, 1.0) var prob_mediano: float = 0.25
+@export_range(0.0, 1.0) var prob_especial: float = 0.05
+
 var _estado: Estado = Estado.PATRULLA
 var _dir: int = -1
 var _t: float = 0.0
@@ -39,6 +46,8 @@ var _jugador: Node2D
 const SFX_RISA := preload("res://assets/audio/risa_payaso.wav")
 const SFX_IMPACTO := preload("res://assets/audio/impacto_enemigo.wav")
 const SFX_MUERTE := preload("res://assets/audio/muerte_enemigo.wav")
+## Se carga por ruta (no por class_name) para que no dependa de que Godot lo registre.
+const CRISTAL := preload("res://scripts/cristal_mana.gd")
 
 var _t_risa: float = 0.0
 
@@ -189,6 +198,7 @@ func _morir() -> void:
 	_area_golpe.set_deferred("monitoring", false)
 	_sprite.modulate = Color.WHITE
 	_sprite.position.x = 0.0
+	_soltar_cristal()
 	# El cuerpo se desintegra (Asset 4: muerte en dos cuadros) y luego se desvanece.
 	var tiene_muerte := _sprite.sprite_frames != null and _sprite.sprite_frames.has_animation("muerte")
 	if tiene_muerte:
@@ -197,6 +207,21 @@ func _morir() -> void:
 	tw.tween_interval(0.45 if tiene_muerte else 0.0)
 	tw.tween_property(self, "modulate", Color(1, 1, 1, 0), 0.4)
 	tw.tween_callback(queue_free)
+
+
+func _soltar_cristal() -> void:
+	if randf() > prob_cristal:
+		return
+	var tirada := randf()
+	var cristal := CRISTAL.new()
+	if tirada < prob_especial:
+		cristal.tamanio = CRISTAL.Tamanio.ESPECIAL
+	elif tirada < prob_especial + prob_mediano:
+		cristal.tamanio = CRISTAL.Tamanio.MEDIANO
+	var nivel := get_parent()
+	cristal.position = nivel.to_local(centro())
+	# Diferido: _morir puede ejecutarse en medio de una colisión del proyectil.
+	nivel.add_child.call_deferred(cristal)
 
 
 # ------------------------------------------------------------------

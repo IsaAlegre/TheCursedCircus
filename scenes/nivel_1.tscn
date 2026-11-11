@@ -20,6 +20,8 @@
 [ext_resource type="Texture2D" uid="uid://xqo5clqu3yen" path="res://assets/walk_4.png" id="16_d6a37"]
 [ext_resource type="PackedScene" path="res://scenes/plataforma_semisolida.tscn" id="19_5ruck"]
 [ext_resource type="PackedScene" path="res://scenes/artista_corrupto.tscn" id="20_ojgse"]
+[ext_resource type="Script" uid="uid://bn32u8jaaa7g" path="res://scripts/hud.gd" id="21_ojgse"]
+[ext_resource type="Script" uid="uid://dglicome3bsg1" path="res://scripts/santuario.gd" id="22_uli2u"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7h30g"]
 texture = ExtResource("6_5ruck")
@@ -469,3 +471,10 @@ position = Vector2(2650, 570)
 
 [node name="ArtistaPasillo2" parent="Enemigos" unique_id=52741640 instance=ExtResource("20_ojgse")]
 position = Vector2(3600, 570)
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1135882755]
+script = ExtResource("21_ojgse")
+
+[node name="Santuario" type="Area2D" parent="." unique_id=2086501250]
+position = Vector2(4493, 604)
+script = ExtResource("22_uli2u")

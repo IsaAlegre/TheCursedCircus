@@ -5,6 +5,9 @@ extends CharacterBody2D
 ## Todos los valores numéricos son iniciales: se calibran desde el Inspector.
 
 signal vida_cambiada(vida_actual: int, vida_maxima: int)
+signal mana_cambiado(mana_actual: int, mana_maximo: int)
+## Se intentó bloquear sin maná suficiente (el HUD sacude la barra).
+signal sin_mana
 
 const PROYECTIL := preload("res://scenes/proyectil_arcano.tscn")
 
@@ -67,7 +70,17 @@ const CAPA_SEMISOLIDAS := 5
 @export var enfriamiento_bloqueo: float = 0.5
 @export var empuje_por_danio: Vector2 = Vector2(320, -300)
 
+@export_group("Maná")
+@export var mana_maximo: int = 100
+## Costo de bloquear (GDD). El Proyectil Arcano no consume maná.
+@export var costo_bloqueo: int = 5
+## Un bloqueo perfecto devuelve el maná gastado: premia el buen timing.
+@export var bloqueo_perfecto_devuelve_mana: bool = true
+## Con maná en 0 el Mago queda debilitado: no puede bloquear y se mueve más lento.
+@export var multiplicador_debilitado: float = 0.75
+
 var vida: int
+var mana: int
 var _mirando: int = 1
 var _retroceso_x: float = 0.0
 var _t_coyote: float = 0.0
@@ -105,6 +118,8 @@ func _ready() -> void:
 	set_collision_mask_value(CAPA_SEMISOLIDAS, true)
 
 	vida = vida_maxima
+	mana = mana_maximo
+	_ir_al_checkpoint()
 	# Se duplica la forma para poder achicarla al agacharse sin afectar otras escenas.
 	_forma = _colision.shape.duplicate()
 	_colision.shape = _forma
@@ -114,6 +129,17 @@ func _ready() -> void:
 	_completar_animaciones()
 	_iniciar_musica()
 	vida_cambiada.emit(vida, vida_maxima)
+	mana_cambiado.emit(mana, mana_maximo)
+
+
+## Si ya se tocó un santuario, el Mago reaparece ahí en vez del inicio del nivel.
+func _ir_al_checkpoint() -> void:
+	var partida := get_node_or_null("/root/Partida")
+	if partida == null or not partida.hay_checkpoint:
+		return
+	global_position = partida.punto_reaparicion
+	if _camara:
+		_camara.reset_smoothing.call_deferred()
 
 
 ## Centro del cuerpo. Los enemigos lo usan para apuntar y detectar al Mago.
@@ -165,6 +191,8 @@ func _physics_process(delta: float) -> void:
 		velocidad = crouch_speed
 	elif Input.is_action_pressed("correr"):
 		velocidad = run_speed
+	if esta_debilitado():
+		velocidad *= multiplicador_debilitado
 	velocity.x = eje * velocidad + _retroceso_x
 	_retroceso_x = move_toward(_retroceso_x, 0.0, friccion_retroceso * delta)
 
@@ -175,9 +203,14 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("disparar") and _t_disparo <= 0.0:
 		_disparar()
 	if Input.is_action_just_pressed("bloquear") and _t_enfriamiento_bloqueo <= 0.0:
-		_t_bloqueo = ventana_bloqueo
-		_t_enfriamiento_bloqueo = enfriamiento_bloqueo
-		_mostrar_pose(&"block", 0.25)
+		if gastar_mana(costo_bloqueo):
+			_t_bloqueo = ventana_bloqueo
+			_t_enfriamiento_bloqueo = enfriamiento_bloqueo
+			_mostrar_pose(&"block", 0.25)
+		else:
+			_t_enfriamiento_bloqueo = 0.3
+			sin_mana.emit()
+			_destello(Color(0.4, 0.4, 0.45))
 
 	move_and_slide()
 	if is_on_wall():
@@ -314,6 +347,8 @@ func recibir_danio(cantidad: int, origen: Node2D) -> bool:
 func _bloqueo_perfecto(origen: Node2D) -> void:
 	_t_bloqueo = 0.0
 	_t_enfriamiento_bloqueo = 0.0  # Premio: se puede volver a bloquear enseguida.
+	if bloqueo_perfecto_devuelve_mana:
+		recuperar_mana(costo_bloqueo)
 	_t_invulnerable = 0.3
 	_destello(Color("F5F2EA"))  # Blanco Hueso (GDD)
 	_sonido(SFX_BLOQUEO, 2.0)
@@ -323,12 +358,55 @@ func _bloqueo_perfecto(origen: Node2D) -> void:
 		origen.aturdir()
 
 
+# ------------------------------------------------------------------
+# Maná y curación (los usan los cristales, los santuarios y el HUD)
+# ------------------------------------------------------------------
+
+func esta_debilitado() -> bool:
+	return mana <= 0
+
+
+## Descuenta maná si alcanza. Devuelve false si no hay suficiente.
+func gastar_mana(cantidad: int) -> bool:
+	if mana < cantidad:
+		return false
+	mana -= cantidad
+	mana_cambiado.emit(mana, mana_maximo)
+	return true
+
+
+## Suma maná sin pasarse del máximo. Devuelve false si ya estaba lleno.
+func recuperar_mana(cantidad: int) -> bool:
+	if mana >= mana_maximo:
+		return false
+	mana = mini(mana + cantidad, mana_maximo)
+	mana_cambiado.emit(mana, mana_maximo)
+	return true
+
+
+func curar(cantidad: int) -> void:
+	if vida >= vida_maxima:
+		return
+	vida = mini(vida + cantidad, vida_maxima)
+	vida_cambiada.emit(vida, vida_maxima)
+	_destello(Color("8A2BE2"))
+
+
+## Santuario: vida y maná al máximo.
+func restaurar_todo() -> void:
+	if vida < vida_maxima:
+		curar(vida_maxima)
+	if mana < mana_maximo:
+		recuperar_mana(mana_maximo)
+
+
 func _morir() -> void:
 	if _muerto:
 		return
 	_muerto = true
 	velocity = Vector2.ZERO
-	# Provisorio hasta tener santuarios: se reinicia el nivel.
+	# Se reinicia el nivel: los enemigos vuelven, y el Mago aparece en el último
+	# santuario tocado (ver _ir_al_checkpoint) con vida y maná completos (GDD).
 	get_tree().call_deferred("reload_current_scene")
 
 
