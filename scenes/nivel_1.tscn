@@ -22,6 +22,9 @@
 [ext_resource type="PackedScene" path="res://scenes/artista_corrupto.tscn" id="20_ojgse"]
 [ext_resource type="Script" uid="uid://bn32u8jaaa7g" path="res://scripts/hud.gd" id="21_ojgse"]
 [ext_resource type="Script" uid="uid://dglicome3bsg1" path="res://scripts/santuario.gd" id="22_uli2u"]
+[ext_resource type="Script" uid="uid://dld1go73oeeiy" path="res://scripts/NPC_Controller.cs" id="23_4asgc"]
+[ext_resource type="Texture2D" uid="uid://vq1okh881nyp" path="res://assets/personajes/ofelia.png" id="24_yr8f8"]
+[ext_resource type="Script" uid="uid://ceubq58ng3ucd" path="res://scripts/NPC_Interaction.cs" id="25_iadvs"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7h30g"]
 texture = ExtResource("6_5ruck")
@@ -307,6 +310,12 @@ size = Vector2(32, 3000)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i01ws"]
 size = Vector2(32, 3000)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_14dp0"]
+size = Vector2(76, 139)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ihr6k"]
+size = Vector2(350.75, 200.5)
+
 [node name="Nivel1" type="Node2D" unique_id=1900401369]
 
 [node name="CapaLejana" type="Parallax2D" parent="." unique_id=1239279378]
@@ -336,7 +345,8 @@ repeat_size = Vector2(2304, 0)
 repeat_times = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="CapaCercana" unique_id=318619009]
-position = Vector2(2, -6)
+position = Vector2(2, 316)
+scale = Vector2(0.23784722, 0.50308645)
 texture = ExtResource("4_cokvo")
 centered = false
 
@@ -403,6 +413,10 @@ texture = ExtResource("9_i01ws")
 position = Vector2(4858, 490)
 texture = ExtResource("4_qx8k3")
 
+[node name="Santuario" type="Area2D" parent="Decoracion" unique_id=2086501250]
+position = Vector2(4494, 604)
+script = ExtResource("22_uli2u")
+
 [node name="Player1-mago" type="CharacterBody2D" parent="." unique_id=2114045632]
 position = Vector2(0, 95)
 script = ExtResource("10_r6w1h")
@@ -436,6 +450,7 @@ shape = SubResource("RectangleShape2D_uli2u")
 position = Vector2(4912, 300)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Limites/ParedFinal" unique_id=1373192692]
+position = Vector2(173, 6)
 shape = SubResource("RectangleShape2D_i01ws")
 
 [node name="Plataformas" type="Node2D" parent="." unique_id=722656360]
@@ -475,6 +490,49 @@ position = Vector2(3600, 570)
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1135882755]
 script = ExtResource("21_ojgse")
 
-[node name="Santuario" type="Area2D" parent="." unique_id=2086501250]
-position = Vector2(4493, 604)
-script = ExtResource("22_uli2u")
+[node name="Ofelia_NPC" type="CharacterBody2D" parent="." unique_id=789627835 node_paths=PackedStringArray("PuntosPatrulla")]
+position = Vector2(4700, 576)
+script = ExtResource("23_4asgc")
+PuntosPatrulla = [NodePath("../PuntoA"), NodePath("../PuntoB")]
+SpriteMiraALaDerecha = false
+
+[node name="Sprite" type="Sprite2D" parent="Ofelia_NPC" unique_id=1935499077]
+position = Vector2(-26.999771, -36.00001)
+scale = Vector2(0.08984614, 0.09082032)
+texture = ExtResource("24_yr8f8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ofelia_NPC" unique_id=1682279444]
+position = Vector2(-25, -36)
+shape = SubResource("RectangleShape2D_14dp0")
+
+[node name="AreaInteraccion" type="Area2D" parent="Ofelia_NPC" unique_id=1414601220 node_paths=PackedStringArray("PanelDialogo", "TextoDialogo", "TextoNombre")]
+script = ExtResource("25_iadvs")
+PanelDialogo = NodePath("../../Dialogo/PanelDialogo")
+TextoDialogo = NodePath("../../Dialogo/PanelDialogo/Texto")
+TextoNombre = NodePath("../../Dialogo/PanelDialogo/Nombre")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ofelia_NPC/AreaInteraccion" unique_id=1052532285]
+position = Vector2(-16, -52)
+shape = SubResource("RectangleShape2D_ihr6k")
+
+[node name="PuntoA" type="Marker2D" parent="." unique_id=84623494]
+position = Vector2(4620, 576)
+
+[node name="PuntoB" type="Marker2D" parent="." unique_id=1881890793]
+position = Vector2(4820, 576)
+
+[node name="Dialogo" type="CanvasLayer" parent="." unique_id=194107554]
+
+[node name="PanelDialogo" type="Panel" parent="Dialogo" unique_id=784691487]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Nombre" type="Label" parent="Dialogo/PanelDialogo" unique_id=2079168759]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Texto" type="Label" parent="Dialogo/PanelDialogo" unique_id=678951616]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
