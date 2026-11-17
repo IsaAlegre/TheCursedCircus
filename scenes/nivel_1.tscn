@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://e37edj4n23gf"]
 
 [ext_resource type="Texture2D" uid="uid://ccpejdmhabsu2" path="res://assets/Gemini_Generated_Image_bejzjfbejzjfbejz.jpg" id="1_r6w1h"]
+[ext_resource type="Script" uid="uid://dhx58xb0b2wb5" path="res://scripts/ParallaxCapa.cs" id="1_yr8f8"]
 [ext_resource type="Texture2D" uid="uid://c0nesmvd5hhep" path="res://assets/muro_lona_1.png" id="3_0qj6g"]
 [ext_resource type="Texture2D" uid="uid://dux7yogg77wa7" path="res://assets/capa2_media.png" id="3_qx8k3"]
 [ext_resource type="Texture2D" uid="uid://bwp821k47xglm" path="res://assets/capa3.png" id="4_cokvo"]
@@ -319,9 +320,10 @@ size = Vector2(350.75, 200.5)
 
 [node name="Nivel1" type="Node2D" unique_id=1900401369]
 
-[node name="CapaLejana" type="Parallax2D" parent="." unique_id=1239279378]
-repeat_size = Vector2(1807.9999, 0)
-repeat_times = 3
+[node name="CapaLejana" type="Node2D" parent="." unique_id=748760509]
+script = ExtResource("1_yr8f8")
+FactorParallax = 0.15
+AnchoRepeticion = 1808.0
 
 [node name="GeminiGeneratedImageBejzjfbejzjfbejz" type="Sprite2D" parent="CapaLejana" unique_id=1313725263]
 position = Vector2(2, -166)
@@ -329,21 +331,19 @@ scale = Vector2(1.3139534, 1.1838541)
 texture = ExtResource("1_r6w1h")
 centered = false
 
-[node name="CapaMedia" type="Parallax2D" parent="." unique_id=1133181229]
-scroll_scale = Vector2(0.65, 0)
-scroll_offset = Vector2(0.5, 0)
-repeat_size = Vector2(2304, 0)
-repeat_times = 3
+[node name="CapaMedia" type="Node2D" parent="." unique_id=1165096893]
+script = ExtResource("1_yr8f8")
+AnchoRepeticion = 2304.0
 
 [node name="Sprite2D" type="Sprite2D" parent="CapaMedia" unique_id=1023567328]
 position = Vector2(96.5, -9)
 texture = ExtResource("3_qx8k3")
 centered = false
 
-[node name="CapaCercana" type="Parallax2D" parent="." unique_id=1124036085]
-scroll_scale = Vector2(0.8, 0.8)
-repeat_size = Vector2(2304, 0)
-repeat_times = 3
+[node name="CapaCercana" type="Node2D" parent="." unique_id=2019781415]
+script = ExtResource("1_yr8f8")
+FactorParallax = 0.08
+AnchoRepeticion = 2304.0
 
 [node name="Sprite2D" type="Sprite2D" parent="CapaCercana" unique_id=318619009]
 position = Vector2(2, 316)
