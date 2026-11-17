@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/arena_jefe.gd" id="1_arena"]
+[ext_resource type="PackedScene" path="res://scenes/domador_corrompido.tscn" id="2_dom"]
+
+[node name="ArenaDomador" type="Node2D"]
+script = ExtResource("1_arena")
+
+[node name="Domador" parent="." instance=ExtResource("2_dom")]
+position = Vector2(1150, -6)

@@ -11,6 +11,11 @@ signal sin_mana
 
 const PROYECTIL := preload("res://scenes/proyectil_arcano.tscn")
 
+## Hechizo de Fuego (GDD): recompensa del Domador Corrompido. Costo 25 de maná, daño 20.
+const COLOR_FUEGO := Color("FF5A00")
+const SFX_DISPARO_FUEGO := preload("res://assets/audio/jefe/disparo_fuego.wav")
+const COLOR_ARCANO := Color("8A2BE2")
+
 # Sonidos (sintetizados para el proyecto, ver assets/audio)
 const MUSICA := preload("res://assets/audio/musica_circo.ogg")
 const SFX_DISPARO := preload("res://assets/audio/disparo_arcano.wav")
@@ -70,6 +75,11 @@ const CAPA_SEMISOLIDAS := 5
 @export var enfriamiento_bloqueo: float = 0.5
 @export var empuje_por_danio: Vector2 = Vector2(320, -300)
 
+@export_group("Hechizo de Fuego")
+@export var costo_fuego: int = 25
+@export var danio_fuego: int = 20
+@export var danio_arcano: int = 10
+
 @export_group("Maná")
 @export var mana_maximo: int = 100
 ## Costo de bloquear (GDD). El Proyectil Arcano no consume maná.
@@ -81,6 +91,9 @@ const CAPA_SEMISOLIDAS := 5
 
 var vida: int
 var mana: int
+## Se obtiene al derrotar al Domador. Q alterna entre Proyectil Arcano y Fuego.
+var tiene_fuego: bool = false
+var hechizo_fuego_activo: bool = false
 var _mirando: int = 1
 var _retroceso_x: float = 0.0
 var _t_coyote: float = 0.0
@@ -119,6 +132,9 @@ func _ready() -> void:
 
 	vida = vida_maxima
 	mana = mana_maximo
+	var partida := get_node_or_null("/root/Partida")
+	if partida and partida.get("tiene_fuego"):
+		tiene_fuego = true
 	_ir_al_checkpoint()
 	# Se duplica la forma para poder achicarla al agacharse sin afectar otras escenas.
 	_forma = _colision.shape.duplicate()
@@ -200,6 +216,9 @@ func _physics_process(delta: float) -> void:
 		_mirando = 1 if eje > 0.0 else -1
 
 	# --- Disparo y bloqueo ---
+	if Input.is_action_just_pressed("cambiar_hechizo") and tiene_fuego:
+		hechizo_fuego_activo = not hechizo_fuego_activo
+		_destello(COLOR_FUEGO if hechizo_fuego_activo else COLOR_ARCANO)
 	if Input.is_action_pressed("disparar") and _t_disparo <= 0.0:
 		_disparar()
 	if Input.is_action_just_pressed("bloquear") and _t_enfriamiento_bloqueo <= 0.0:
@@ -285,14 +304,21 @@ func _direccion_de_disparo() -> Vector2:
 
 func _disparar() -> void:
 	_t_disparo = cadencia
+	var fuego := hechizo_fuego_activo
+	if fuego and not gastar_mana(costo_fuego):
+		# Sin maná para el Fuego: sale el Proyectil Arcano, que es gratis.
+		sin_mana.emit()
+		fuego = false
 	var dir := _direccion_de_disparo()
 	_mostrar_pose(&"cast", 0.2)
-	_sonido(SFX_DISPARO, 0.0, 0.08)
+	_sonido(SFX_DISPARO_FUEGO if fuego else SFX_DISPARO, 0.0, 0.08)
 	if absf(dir.x) > 0.1:
 		_mirando = 1 if dir.x > 0.0 else -1
 
 	var p := PROYECTIL.instantiate()
 	p.direccion = dir
+	p.color = COLOR_FUEGO if fuego else COLOR_ARCANO
+	p.danio = danio_fuego if fuego else danio_arcano
 	p.lanzador = self
 	get_parent().add_child(p)
 	p.global_position = centro() + dir * 40.0
@@ -319,10 +345,11 @@ func _disparar() -> void:
 # ------------------------------------------------------------------
 
 ## Lo llaman los enemigos. Devuelve true si el golpe hizo daño.
-func recibir_danio(cantidad: int, origen: Node2D) -> bool:
+## bloqueable = false para ataques que solo se esquivan (onda de fuego, salto aplastante del Domador).
+func recibir_danio(cantidad: int, origen: Node2D, bloqueable: bool = true) -> bool:
 	if _muerto or _t_invulnerable > 0.0:
 		return false
-	if _t_bloqueo > 0.0:
+	if _t_bloqueo > 0.0 and bloqueable:
 		_bloqueo_perfecto(origen)
 		return false
 
@@ -398,6 +425,18 @@ func restaurar_todo() -> void:
 		curar(vida_maxima)
 	if mana < mana_maximo:
 		recuperar_mana(mana_maximo)
+
+
+## Recompensa del Domador Corrompido.
+func obtener_hechizo_fuego() -> void:
+	tiene_fuego = true
+	hechizo_fuego_activo = true
+	_destello(COLOR_FUEGO)
+
+
+## Para que otros nodos (el jefe) puedan sacudir la cámara del Mago.
+func sacudir_camara(intensidad: float, duracion: float) -> void:
+	_sacudir_camara(intensidad, duracion)
 
 
 func _morir() -> void:
@@ -532,6 +571,7 @@ func _iniciar_musica() -> void:
 func _configurar_controles() -> void:
 	_agregar_teclas("agacharse", [KEY_S, KEY_DOWN])
 	_agregar_teclas("correr", [KEY_SHIFT])
+	_agregar_teclas("cambiar_hechizo", [KEY_Q])
 	_agregar_teclas("disparar", [KEY_J])
 	_agregar_mouse("disparar", MOUSE_BUTTON_LEFT)
 	_agregar_teclas("bloquear", [KEY_K])

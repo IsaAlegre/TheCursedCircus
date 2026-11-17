@@ -43,7 +43,13 @@ var _jugador: Node2D
 @onready var _area_golpe: Area2D = $AreaGolpe
 @onready var _colision: CollisionShape2D = $CollisionShape2D
 
-const SFX_RISA := preload("res://assets/audio/risa_payaso.wav")
+## Risas: una sintetizada para el proyecto y tres de ElevenLabs. Se elige una al azar en cada aviso.
+const RISAS: Array[AudioStream] = [
+	preload("res://assets/audio/risa_payaso.wav"),
+	preload("res://assets/audio/risa_payaso_2.ogg"),
+	preload("res://assets/audio/risa_payaso_3.ogg"),
+	preload("res://assets/audio/risa_payaso_4.ogg"),
+]
 const SFX_IMPACTO := preload("res://assets/audio/impacto_enemigo.wav")
 const SFX_MUERTE := preload("res://assets/audio/muerte_enemigo.wav")
 ## Se carga por ruta (no por class_name) para que no dependa de que Godot lo registre.
@@ -147,8 +153,10 @@ func _cambiar_estado(nuevo: Estado) -> void:
 			_t = duracion_aviso
 			# Se ríe antes de embestir: además de dar miedo, avisa del ataque.
 			if _t_risa <= 0.0:
-				_t_risa = pausa_entre_risas
-				_sonido(SFX_RISA, 0.0, 0.1)
+				var risa: AudioStream = RISAS.pick_random()
+				# No vuelve a reírse hasta que termine esta risa (las hay de hasta 3 s).
+				_t_risa = maxf(pausa_entre_risas, risa.get_length())
+				_sonido(risa, 0.0, 0.08)
 		Estado.EMBESTIDA:
 			_t = duracion_embestida
 		Estado.ATURDIDO:

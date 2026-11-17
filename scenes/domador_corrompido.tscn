@@ -1,0 +1,207 @@
+[gd_scene load_steps=28 format=3]
+
+[ext_resource type="Script" path="res://scripts/domador_corrompido.gd" id="1_dom"]
+[ext_resource type="Texture2D" path="res://assets/personajes/domador/domador_aterrizaje.png" id="2_aterrizaje"]
+[ext_resource type="Texture2D" path="res://assets/personajes/domador/domador_aturdido_1.png" id="3_aturdido_1"]
+[ext_resource type="Texture2D" path="res://assets/personajes/domador/domador_aturdido_2.png" id="4_aturdido_2"]
+[ext_resource type="Texture2D" path="res://assets/personajes/domador/domador_aturdido_3.png" id="5_aturdido_3"]
+[ext_resource type="Texture2D" path="res://assets/personajes/domador/domador_caminar_1.png" id="6_caminar_1"]
+[ext_resource type="Texture2D" path="res://assets/personajes/domador/domador_caminar_2.png" id="7_caminar_2"]
+[ext_resource type="Texture2D" path="res://assets/personajes/domador/domador_danio.png" id="8_danio"]
+[ext_resource type="Texture2D" path="res://assets/personajes/domador/domador_latigazo_1.png" id="9_latigazo_1"]
+[ext_resource type="Texture2D" path="res://assets/personajes/domador/domador_latigazo_2.png" id="10_latigazo_2"]
+[ext_resource type="Texture2D" path="res://assets/personajes/domador/domador_muerte_1.png" id="11_muerte_1"]
+[ext_resource type="Texture2D" path="res://assets/personajes/domador/domador_muerte_2.png" id="12_muerte_2"]
+[ext_resource type="Texture2D" path="res://assets/personajes/domador/domador_muerte_3.png" id="13_muerte_3"]
+[ext_resource type="Texture2D" path="res://assets/personajes/domador/domador_muerte_4.png" id="14_muerte_4"]
+[ext_resource type="Texture2D" path="res://assets/personajes/domador/domador_onda.png" id="15_onda"]
+[ext_resource type="Texture2D" path="res://assets/personajes/domador/domador_quieto_1.png" id="16_quieto_1"]
+[ext_resource type="Texture2D" path="res://assets/personajes/domador/domador_quieto_2.png" id="17_quieto_2"]
+[ext_resource type="Texture2D" path="res://assets/personajes/domador/domador_recuperacion.png" id="18_recuperacion"]
+[ext_resource type="Texture2D" path="res://assets/personajes/domador/domador_salto_caida.png" id="19_salto_caida"]
+[ext_resource type="Texture2D" path="res://assets/personajes/domador/domador_salto_subida.png" id="20_salto_subida"]
+[ext_resource type="Texture2D" path="res://assets/personajes/domador/domador_tell_latigazo.png" id="21_tell_latigazo"]
+[ext_resource type="Texture2D" path="res://assets/personajes/domador/domador_tell_onda.png" id="22_tell_onda"]
+[ext_resource type="Texture2D" path="res://assets/personajes/domador/domador_tell_salto.png" id="23_tell_salto"]
+[ext_resource type="Texture2D" path="res://assets/personajes/domador/domador_transicion_1.png" id="24_transicion_1"]
+[ext_resource type="Texture2D" path="res://assets/personajes/domador/domador_transicion_2.png" id="25_transicion_2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dom"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_quieto_1")
+}],
+"loop": true,
+"name": &"quieto",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_quieto_2")
+}],
+"loop": true,
+"name": &"rugido",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_caminar_1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_quieto_1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_caminar_2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_quieto_1")
+}],
+"loop": true,
+"name": &"caminar",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("21_tell_latigazo")
+}],
+"loop": true,
+"name": &"tell_latigazo",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_latigazo_1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_latigazo_2")
+}],
+"loop": false,
+"name": &"latigazo",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("18_recuperacion")
+}],
+"loop": true,
+"name": &"recuperacion",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("23_tell_salto")
+}],
+"loop": true,
+"name": &"tell_salto",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20_salto_subida")
+}],
+"loop": true,
+"name": &"salto",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("19_salto_caida")
+}],
+"loop": true,
+"name": &"caida",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_aterrizaje")
+}],
+"loop": true,
+"name": &"aterrizaje",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_aturdido_1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_aturdido_2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_aturdido_3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_aturdido_2")
+}],
+"loop": true,
+"name": &"aturdido",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_danio")
+}],
+"loop": true,
+"name": &"danio",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("24_transicion_1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_transicion_2")
+}],
+"loop": true,
+"name": &"transicion",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("22_tell_onda")
+}],
+"loop": true,
+"name": &"tell_onda",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_onda")
+}],
+"loop": true,
+"name": &"onda",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_muerte_1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_muerte_2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_muerte_3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_muerte_4")
+}],
+"loop": false,
+"name": &"muerte",
+"speed": 3.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dom"]
+size = Vector2(96, 220)
+
+[node name="Domador" type="CharacterBody2D"]
+script = ExtResource("1_dom")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -146)
+sprite_frames = SubResource("SpriteFrames_dom")
+animation = &"quieto"
+autoplay = "quieto"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -110)
+shape = SubResource("RectangleShape2D_dom")

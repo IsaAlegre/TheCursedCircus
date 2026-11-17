@@ -9,6 +9,8 @@ extends Area2D
 
 var direccion: Vector2 = Vector2.RIGHT
 var lanzador: Node = null
+## Lo define el Mago: Violeta Arcano para el Proyectil Arcano, Naranja Magma para el Fuego.
+var color: Color = Color("8A2BE2")
 
 const VIOLETA := Color("8A2BE2")
 const BLANCO_HUESO := Color("F5F2EA")
@@ -41,7 +43,7 @@ func _al_tocar_cuerpo(cuerpo: Node) -> void:
 
 
 func _draw() -> void:
-	draw_line(Vector2(-30, 0), Vector2.ZERO, Color(VIOLETA, 0.45), 8.0)
-	draw_circle(Vector2.ZERO, 14.0, Color(VIOLETA, 0.35))
-	draw_circle(Vector2.ZERO, 9.0, VIOLETA)
+	draw_line(Vector2(-30, 0), Vector2.ZERO, Color(color, 0.45), 8.0)
+	draw_circle(Vector2.ZERO, 14.0, Color(color, 0.35))
+	draw_circle(Vector2.ZERO, 9.0, color)
 	draw_circle(Vector2.ZERO, 4.0, BLANCO_HUESO)
