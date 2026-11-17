@@ -24,9 +24,13 @@
 [ext_resource type="Script" uid="uid://bn32u8jaaa7g" path="res://scripts/hud.gd" id="21_ojgse"]
 [ext_resource type="Script" uid="uid://dglicome3bsg1" path="res://scripts/santuario.gd" id="22_uli2u"]
 [ext_resource type="Script" uid="uid://dld1go73oeeiy" path="res://scripts/NPC_Controller.cs" id="23_4asgc"]
+[ext_resource type="Script" uid="uid://dhqwhcrjhi4tx" path="res://scripts/Malabarista.cs" id="23_d6a37"]
+[ext_resource type="PackedScene" path="res://scenes/arena_domador.tscn" id="23_uli2u"]
 [ext_resource type="Texture2D" uid="uid://vq1okh881nyp" path="res://assets/personajes/ofelia.png" id="24_yr8f8"]
 [ext_resource type="Script" uid="uid://ceubq58ng3ucd" path="res://scripts/NPC_Interaction.cs" id="25_iadvs"]
-[ext_resource type="PackedScene" path="res://scenes/arena_domador.tscn" id="23_uli2u"]
+[ext_resource type="Script" uid="uid://2mk45bq5w1g2" path="res://scripts/IntroNivel.cs" id="28_aga2y"]
+[ext_resource type="Script" uid="uid://cjgf2pomwbjxj" path="res://scripts/Barricada.cs" id="30_dpntg"]
+[ext_resource type="Script" uid="uid://cidjwf4k355t" path="res://scripts/SalidaNivel.cs" id="31_ympst"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7h30g"]
 texture = ExtResource("6_5ruck")
@@ -433,6 +437,7 @@ texture = ExtResource("8_uli2u")
 [node name="Player1-mago" type="CharacterBody2D" parent="." unique_id=2114045632]
 position = Vector2(0, 95)
 script = ExtResource("10_r6w1h")
+run_speed = 460.0
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="Player1-mago" unique_id=109622484]
@@ -500,6 +505,10 @@ position = Vector2(2650, 570)
 [node name="ArtistaPasillo2" parent="Enemigos" unique_id=52741640 instance=ExtResource("20_ojgse")]
 position = Vector2(3600, 570)
 
+[node name="Malabarista" type="CharacterBody2D" parent="Enemigos" unique_id=2089399584]
+position = Vector2(3460, 350)
+script = ExtResource("23_d6a37")
+
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1135882755]
 script = ExtResource("21_ojgse")
 
@@ -552,3 +561,14 @@ offset_bottom = 23.0
 
 [node name="ArenaDomador" parent="." unique_id=1537986498 instance=ExtResource("23_uli2u")]
 position = Vector2(5120, 576)
+
+[node name="IntroNivel" type="Node" parent="." unique_id=564623739]
+script = ExtResource("28_aga2y")
+
+[node name="Barricada" type="StaticBody2D" parent="." unique_id=1136345544]
+position = Vector2(6560, 576)
+script = ExtResource("30_dpntg")
+
+[node name="SalidaNivel" type="Area2D" parent="." unique_id=731598055]
+position = Vector2(6670, 576)
+script = ExtResource("31_ympst")

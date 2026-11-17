@@ -234,11 +234,11 @@ func _al_entrar(cuerpo: Node) -> void:
 
 
 func _al_cambiar_vida(vida: int, maxima: int) -> void:
-	var ancho := HUECO.size.x * float(vida) / float(maxima)
-	create_tween().tween_property(_recorte_vida, "size:x", ancho, 0.12)
+	var ancho_vida := HUECO.size.x * float(vida) / float(maxima)
+	create_tween().tween_property(_recorte_vida, "size:x", ancho_vida, 0.12)
 	var tw := create_tween()
 	tw.tween_interval(0.45)
-	tw.tween_property(_recorte_estela, "size:x", ancho, 0.5).set_ease(Tween.EASE_IN)
+	tw.tween_property(_recorte_estela, "size:x", ancho_vida, 0.5).set_ease(Tween.EASE_IN)
 
 
 func _al_cambiar_fase(_fase: int) -> void:

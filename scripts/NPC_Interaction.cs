@@ -80,6 +80,13 @@ public partial class NPC_Interaction : Area2D
 	[Export] public float DuracionEnfoque = 0.5f;
 
 	[ExportGroup("Voz")]
+	/// <summary>Una grabación por línea de diálogo (la voz diciendo esa frase). Si queda vacío
+	/// se cargan solas res://assets/audio/ofelia_linea_1.ogg, _2, _3... (también .wav o .mp3).
+	/// Las líneas sin grabación usan los susurros de "Voces".</summary>
+	[Export] public AudioStream[] VocesPorLinea = System.Array.Empty<AudioStream>();
+	/// <summary>Si hay grabación, el texto se escribe al ritmo de la voz.</summary>
+	[Export] public bool SincronizarTextoConVoz = true;
+	[Export] public float VolumenLineaDb = -2f;
 	/// <summary>Susurros que se turnan mientras se escribe. Si queda vacío se cargan
 	/// res://assets/audio/voz_ofelia_1.wav, _2 y _3.</summary>
 	[Export] public AudioStream[] Voces = System.Array.Empty<AudioStream>();
@@ -111,6 +118,7 @@ void fragment() {
 	private float _t;
 
 	private AudioStreamPlayer _reproductorVoz;
+	private AudioStreamPlayer _reproductorLinea;
 
 	private ColorRect _capaLuz;
 	private ShaderMaterial _materialLuz;
@@ -210,9 +218,23 @@ void fragment() {
 	{
 		TextoDialogo.Text = texto;
 		TextoDialogo.VisibleRatio = 0f;
+		float duracion = texto.Length / VelocidadEscritura;
+
+		// Si esta línea tiene grabación, suena completa y el texto la acompaña.
+		_reproductorLinea.Stop();
+		AudioStream grabacion = GrabacionDeLinea(_linea);
+		if (grabacion != null)
+		{
+			_reproductorVoz.Stop();
+			_reproductorLinea.Stream = grabacion;
+			_reproductorLinea.Play();
+			if (SincronizarTextoConVoz)
+				duracion = Mathf.Max((float)grabacion.GetLength() * 0.9f, 0.5f);
+		}
+
 		_tweenTexto?.Kill();
 		_tweenTexto = CreateTween();
-		_tweenTexto.TweenProperty(TextoDialogo, "visible_ratio", 1f, texto.Length / VelocidadEscritura);
+		_tweenTexto.TweenProperty(TextoDialogo, "visible_ratio", 1f, duracion);
 	}
 
 	private void Cerrar()
@@ -220,6 +242,7 @@ void fragment() {
 		bool estabaAbierto = _linea >= 0;
 		_linea = -1;
 		_tweenTexto?.Kill();
+		_reproductorLinea?.Stop();
 		if (PanelDialogo != null)
 			PanelDialogo.Visible = false;
 		_npc?.TerminarConversacion();
@@ -262,11 +285,38 @@ void fragment() {
 		}
 		_reproductorVoz = new AudioStreamPlayer { VolumeDb = VolumenVoz };
 		AddChild(_reproductorVoz);
+
+		if (VocesPorLinea.Length == 0)
+		{
+			var lineas = new AudioStream[Dialogo.Length];
+			for (int i = 0; i < Dialogo.Length; i++)
+			{
+				foreach (string extension in new[] { "ogg", "wav", "mp3" })
+				{
+					string ruta = $"res://assets/audio/ofelia_linea_{i + 1}.{extension}";
+					if (ResourceLoader.Exists(ruta))
+					{
+						lineas[i] = GD.Load<AudioStream>(ruta);
+						break;
+					}
+				}
+			}
+			VocesPorLinea = lineas;
+		}
+		_reproductorLinea = new AudioStreamPlayer { VolumeDb = VolumenLineaDb };
+		AddChild(_reproductorLinea);
+	}
+
+	private AudioStream GrabacionDeLinea(int linea)
+	{
+		return linea >= 0 && linea < VocesPorLinea.Length ? VocesPorLinea[linea] : null;
 	}
 
 	private void ActualizarVoz(float dt)
 	{
-		bool escribiendo = _linea >= 0 && TextoDialogo != null && TextoDialogo.VisibleRatio < 1f;
+		// Las líneas con grabación no usan los susurros.
+		bool escribiendo = _linea >= 0 && TextoDialogo != null && TextoDialogo.VisibleRatio < 1f
+			&& GrabacionDeLinea(_linea) == null;
 		if (escribiendo)
 		{
 			// Encadena susurros mientras dure la línea.
