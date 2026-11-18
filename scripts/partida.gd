@@ -25,6 +25,8 @@ var barricada_quemada: bool = false:
 	set(valor):
 		barricada_quemada = valor
 		guardar()
+## Franjas del nivel que el Mago ya recorrió (las usa el Minimapa).
+var franjas_exploradas: Array = []
 
 var _cargando: bool = false
 
@@ -50,6 +52,7 @@ func borrar_checkpoint() -> void:
 	domador_derrotado = false
 	tiene_fuego = false
 	barricada_quemada = false
+	franjas_exploradas = []
 	_cargando = false
 	if FileAccess.file_exists(ARCHIVO):
 		DirAccess.remove_absolute(ProjectSettings.globalize_path(ARCHIVO))
@@ -70,6 +73,7 @@ func guardar() -> void:
 	cfg.set_value("progreso", "domador_derrotado", domador_derrotado)
 	cfg.set_value("progreso", "tiene_fuego", tiene_fuego)
 	cfg.set_value("progreso", "barricada_quemada", barricada_quemada)
+	cfg.set_value("progreso", "franjas_exploradas", franjas_exploradas)
 	cfg.save(ARCHIVO)
 
 
@@ -84,4 +88,5 @@ func cargar() -> void:
 	domador_derrotado = cfg.get_value("progreso", "domador_derrotado", false)
 	tiene_fuego = cfg.get_value("progreso", "tiene_fuego", false)
 	barricada_quemada = cfg.get_value("progreso", "barricada_quemada", false)
+	franjas_exploradas = cfg.get_value("progreso", "franjas_exploradas", [])
 	_cargando = false
