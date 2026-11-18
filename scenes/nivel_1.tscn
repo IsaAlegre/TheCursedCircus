@@ -28,9 +28,12 @@
 [ext_resource type="PackedScene" path="res://scenes/arena_domador.tscn" id="23_uli2u"]
 [ext_resource type="Texture2D" uid="uid://vq1okh881nyp" path="res://assets/personajes/ofelia.png" id="24_yr8f8"]
 [ext_resource type="Script" uid="uid://ceubq58ng3ucd" path="res://scripts/NPC_Interaction.cs" id="25_iadvs"]
+[ext_resource type="Script" uid="uid://5i5wbekqqfq8" path="res://scripts/Minimapa.cs" id="25_jtwo8"]
 [ext_resource type="Script" uid="uid://2mk45bq5w1g2" path="res://scripts/IntroNivel.cs" id="28_aga2y"]
 [ext_resource type="Script" uid="uid://cjgf2pomwbjxj" path="res://scripts/Barricada.cs" id="30_dpntg"]
 [ext_resource type="Script" uid="uid://cidjwf4k355t" path="res://scripts/SalidaNivel.cs" id="31_ympst"]
+[ext_resource type="Script" uid="uid://ch6b1ga5hcxeg" path="res://scripts/Estacas.cs" id="33_2gsa7"]
+[ext_resource type="Script" uid="uid://us548s40eyh2" path="res://scripts/CuchillaPendular.cs" id="34_bml3x"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7h30g"]
 texture = ExtResource("6_5ruck")
@@ -403,7 +406,7 @@ position = Vector2(4330, 484)
 texture = ExtResource("8_uli2u")
 
 [node name="Taquilla" type="Sprite2D" parent="Decoracion" unique_id=1224081371]
-position = Vector2(2060, 500)
+position = Vector2(2061, 490)
 texture = ExtResource("11_cokvo")
 
 [node name="Taquilla2" type="Sprite2D" parent="Decoracion" unique_id=553272540]
@@ -437,7 +440,8 @@ texture = ExtResource("8_uli2u")
 [node name="Player1-mago" type="CharacterBody2D" parent="." unique_id=2114045632]
 position = Vector2(0, 95)
 script = ExtResource("10_r6w1h")
-run_speed = 460.0
+move_speed = 300.0
+run_speed = 600.0
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="Player1-mago" unique_id=109622484]
@@ -512,6 +516,13 @@ script = ExtResource("23_d6a37")
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1135882755]
 script = ExtResource("21_ojgse")
 
+[node name="Minimapa" type="Control" parent="HUD" unique_id=1285826021]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("25_jtwo8")
+
 [node name="Ofelia_NPC" type="CharacterBody2D" parent="." unique_id=789627835 node_paths=PackedStringArray("PuntosPatrulla")]
 position = Vector2(4700, 576)
 script = ExtResource("23_4asgc")
@@ -572,3 +583,11 @@ script = ExtResource("30_dpntg")
 [node name="SalidaNivel" type="Area2D" parent="." unique_id=731598055]
 position = Vector2(6670, 576)
 script = ExtResource("31_ympst")
+
+[node name="Estacas1" type="Area2D" parent="." unique_id=46862948]
+position = Vector2(1808, 607)
+script = ExtResource("33_2gsa7")
+
+[node name="Cuchilla1" type="Node2D" parent="." unique_id=1584457665]
+position = Vector2(4000, 210)
+script = ExtResource("34_bml3x")
