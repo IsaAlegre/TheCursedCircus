@@ -37,7 +37,7 @@ public partial class Prologo : Control
 	private const string RutaMago = "res://assets/mago.png";
 	private const string RutaPergamino = "res://assets/ui/pergamino.png";
 	private const string RutaFuente = "res://assets/fuentes/IMFellEnglish-Regular.ttf";
-	private const string RutaMusica = "res://assets/audio/musica_circo.ogg";
+	private const string RutaMusica = "res://assets/audio/musica_ambiente.ogg";
 	private static readonly string[] RutasCriaturas =
 	{
 		"res://assets/personajes/artista_quieto.png",

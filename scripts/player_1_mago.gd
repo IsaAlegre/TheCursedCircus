@@ -17,9 +17,10 @@ const SFX_DISPARO_FUEGO := preload("res://assets/audio/jefe/disparo_fuego.wav")
 const COLOR_ARCANO := Color("8A2BE2")
 
 # Sonidos (sintetizados para el proyecto, ver assets/audio)
-const MUSICA := preload("res://assets/audio/musica_circo.ogg")
+const MUSICA := preload("res://assets/audio/musica_ambiente.ogg")
 const SFX_DISPARO := preload("res://assets/audio/disparo_arcano.wav")
-const SFX_DANIO := preload("res://assets/audio/danio_mago.wav")
+## Golpe seco con risa siniestra cuando al Mago le pegan (antes: danio_mago.wav).
+const SFX_DANIO := preload("res://assets/audio/golpe_risa.mp3")
 const SFX_BLOQUEO := preload("res://assets/audio/bloqueo_perfecto.wav")
 
 ## Animaciones que el script agrega si todavía no están en el SpriteFrames del nivel.

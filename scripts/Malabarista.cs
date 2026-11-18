@@ -71,7 +71,7 @@ public partial class Malabarista : CharacterBody2D
 		}
 		_texLanzar ??= _texQuieto;
 
-		_sfxRisa = Cargar<AudioStream>("res://assets/audio/risa_payaso_2.ogg") ?? Cargar<AudioStream>("res://assets/audio/risa_payaso.wav");
+		_sfxRisa = Cargar<AudioStream>("res://assets/audio/risa_payaso_2.ogg") ?? Cargar<AudioStream>("res://assets/audio/risa_payaso_3.ogg");
 		_sfxImpacto = Cargar<AudioStream>("res://assets/audio/impacto_enemigo.wav");
 		_sfxMuerte = Cargar<AudioStream>("res://assets/audio/muerte_enemigo.wav");
 	}

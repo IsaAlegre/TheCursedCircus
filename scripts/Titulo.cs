@@ -35,13 +35,14 @@ public partial class Titulo : Control
 	private const string RutaNiebla = "res://assets/capa3.png";
 	private const string RutaFuenteTitulo = "res://assets/fuentes/PirataOne-Regular.ttf";
 	private const string RutaFuenteTexto = "res://assets/fuentes/IMFellEnglish-Regular.ttf";
-	private const string RutaMusica = "res://assets/audio/musica_circo.ogg";
+	private const string RutaMusica = "res://assets/audio/musica_ambiente.ogg";
+	/// <summary>Fanfarria de circo que suena una sola vez al abrir el juego; al terminar arranca la música en bucle.</summary>
+	private const string RutaIntro = "res://assets/audio/inicio_circo.mp3";
 	private const string RutaPayasoQuieto = "res://assets/personajes/artista_quieto.png";
 	private const string RutaPayasoCaminar = "res://assets/personajes/artista_caminar.png";
 	private const string RutaPayasoSaludo = "res://assets/personajes/artista_aviso.png";
 	private static readonly string[] RutasRisas =
 	{
-		"res://assets/audio/risa_payaso.wav",
 		"res://assets/audio/risa_payaso_2.ogg",
 		"res://assets/audio/risa_payaso_3.ogg",
 	};
@@ -423,8 +424,24 @@ public partial class Titulo : Control
 		var pista = (AudioStream)GD.Load<AudioStream>(RutaMusica).Duplicate();
 		if (pista is AudioStreamOggVorbis ogg)
 			ogg.Loop = true;
-		var musica = new AudioStreamPlayer { Name = "Musica", Stream = pista, VolumeDb = VolumenMusicaDb, Autoplay = true };
+
+		// Si está la fanfarria de inicio, suena primero (una sola vez) y después sigue la música del circo.
+		// El reproductor cuelga de la raíz, así que el cambio ocurre aunque ya se haya pasado al prólogo.
+		var intro = ResourceLoader.Exists(RutaIntro) ? GD.Load<AudioStream>(RutaIntro).Duplicate() as AudioStream : null;
+		if (intro is AudioStreamMP3 mp3)
+			mp3.Loop = false;
+		var musica = new AudioStreamPlayer { Name = "Musica", Stream = intro ?? pista, VolumeDb = VolumenMusicaDb, Autoplay = true };
+		if (intro != null)
+			musica.Finished += () => CambiarAMusicaEnBucle(musica, pista);
 		raiz.CallDeferred(Node.MethodName.AddChild, musica);
+	}
+
+	private static void CambiarAMusicaEnBucle(AudioStreamPlayer musica, AudioStream pista)
+	{
+		if (!GodotObject.IsInstanceValid(musica) || musica.Stream == pista)
+			return;
+		musica.Stream = pista;
+		musica.Play();
 	}
 
 	private static T Cargar<T>(string ruta) where T : class

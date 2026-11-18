@@ -88,7 +88,7 @@ public partial class NPC_Interaction : Area2D
 	[Export] public bool SincronizarTextoConVoz = true;
 	[Export] public float VolumenLineaDb = -2f;
 	/// <summary>Susurros que se turnan mientras se escribe. Si queda vacío se cargan
-	/// res://assets/audio/voz_ofelia_1.wav, _2 y _3.</summary>
+	/// res://assets/audio/voz_ofelia_susurro_1.ogg a _6 (o, si faltan, voz_ofelia_1.wav, _2 y _3).</summary>
 	[Export] public AudioStream[] Voces = System.Array.Empty<AudioStream>();
 	[Export] public float VolumenVoz = -10f;
 	/// <summary>Variación del tono entre un susurro y otro.</summary>
@@ -274,12 +274,23 @@ void fragment() {
 	{
 		if (Voces.Length == 0)
 		{
+			// Primero los susurros nuevos (voz_ofelia_susurro_1.ogg ... _6.ogg, recortados de una
+			// misma grabación); si no están, los susurros anteriores voz_ofelia_1.wav, _2 y _3.
 			var encontradas = new System.Collections.Generic.List<AudioStream>();
-			for (int i = 1; i <= 3; i++)
+			for (int i = 1; i <= 6; i++)
 			{
-				string ruta = $"res://assets/audio/voz_ofelia_{i}.wav";
+				string ruta = $"res://assets/audio/voz_ofelia_susurro_{i}.ogg";
 				if (ResourceLoader.Exists(ruta))
 					encontradas.Add(GD.Load<AudioStream>(ruta));
+			}
+			if (encontradas.Count == 0)
+			{
+				for (int i = 1; i <= 3; i++)
+				{
+					string ruta = $"res://assets/audio/voz_ofelia_{i}.wav";
+					if (ResourceLoader.Exists(ruta))
+						encontradas.Add(GD.Load<AudioStream>(ruta));
+				}
 			}
 			Voces = encontradas.ToArray();
 		}

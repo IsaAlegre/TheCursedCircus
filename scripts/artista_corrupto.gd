@@ -43,9 +43,8 @@ var _jugador: Node2D
 @onready var _area_golpe: Area2D = $AreaGolpe
 @onready var _colision: CollisionShape2D = $CollisionShape2D
 
-## Risas: una sintetizada para el proyecto y tres de ElevenLabs. Se elige una al azar en cada aviso.
+## Risas de ElevenLabs. Se elige una al azar en cada aviso.
 const RISAS: Array[AudioStream] = [
-	preload("res://assets/audio/risa_payaso.wav"),
 	preload("res://assets/audio/risa_payaso_2.ogg"),
 	preload("res://assets/audio/risa_payaso_3.ogg"),
 	preload("res://assets/audio/risa_payaso_4.ogg"),
