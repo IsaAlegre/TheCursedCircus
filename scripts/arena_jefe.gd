@@ -270,7 +270,7 @@ func _al_recoger_hechizo(jugador: Node) -> void:
 	var partida := get_node_or_null("/root/Partida")
 	if partida and "tiene_fuego" in partida:
 		partida.tiene_fuego = true
-	_mostrar_mensaje("Obtuviste el Hechizo de Fuego\nQ para cambiar de hechizo · cuesta 25 de maná")
+	_mostrar_mensaje("Obtuviste el Hechizo de Fuego\nCada disparo de Fuego cuesta 25 de maná")
 	_cerrar_puerta(false)
 	_zoom(1.0)
 	_restaurar_musica_nivel()

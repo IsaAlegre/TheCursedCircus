@@ -13,6 +13,8 @@ public partial class Barricada : StaticBody2D
 	/// <summary>Distancia a la que aparece el aviso de qué hacer.</summary>
 	[Export] public float DistanciaAviso = 520f;
 	[Export] public string Pista = "Los telones están empapados de brea... el fuego los consumiría.";
+	/// <summary>Aviso cuando el Mago ya tiene el Fuego.</summary>
+	[Export] public string AvisoConFuego = "Prendé fuego a los telones.";
 	[Export] public float VolumenEfectosDb = -2f;
 
 	private const string RutaTelon = "res://assets/muro_lona_1.png";
@@ -86,7 +88,7 @@ public partial class Barricada : StaticBody2D
 
 	/// <summary>
 	/// Cuando el Mago se acerca, aparece qué hacer según lo que tenga:
-	/// sin Fuego, la pista; con Fuego guardado, cómo cambiarlo; con Fuego activo, que dispare.
+	/// sin Fuego, la pista; con el Fuego, que lo use contra los telones.
 	/// </summary>
 	private void ActualizarAviso(float dt)
 	{
@@ -98,13 +100,7 @@ public partial class Barricada : StaticBody2D
 			Vector2 posJugador = _jugador.HasMethod("centro") ? _jugador.Call("centro").AsVector2() : _jugador.GlobalPosition;
 			cerca = Mathf.Abs(posJugador.X - GlobalPosition.X) < DistanciaAviso;
 			_jugadorTieneFuego = _jugador.Get("tiene_fuego").AsBool();
-			bool fuegoActivo = _jugador.Get("hechizo_fuego_activo").AsBool();
-			if (!_jugadorTieneFuego)
-				_aviso = Pista;
-			else if (!fuegoActivo)
-				_aviso = "Q: cambiar al Hechizo de Fuego";
-			else
-				_aviso = "J: lanzá el Fuego contra los telones";
+			_aviso = _jugadorTieneFuego ? AvisoConFuego : Pista;
 		}
 		_alfaAviso = Mathf.MoveToward(_alfaAviso, cerca ? 1f : 0f, dt * 3f);
 	}

@@ -136,6 +136,8 @@ func _ready() -> void:
 	var partida := get_node_or_null("/root/Partida")
 	if partida and partida.get("tiene_fuego"):
 		tiene_fuego = true
+		# Al reaparecer o continuar, el Fuego ya viene listo para usar.
+		hechizo_fuego_activo = true
 	_ir_al_checkpoint()
 	# Se duplica la forma para poder achicarla al agacharse sin afectar otras escenas.
 	_forma = _colision.shape.duplicate()
